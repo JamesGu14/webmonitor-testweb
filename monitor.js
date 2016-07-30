@@ -1,27 +1,25 @@
 
-var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
-var curr_url = window.location.href.split('?')[0];
-function guid() {
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4();
+function _senso_guid() {
+  return _senso_s4() + _senso_s4() + '-' + _senso_s4() + '-' + _senso_s4() + '-' +
+    _senso_s4() + '-' + _senso_s4() + _senso_s4() + _senso_s4();
 }
 
-function s4() {
+function _senso_s4() {
   return Math.floor((1 + Math.random()) * 0x10000)
     .toString(16)
     .substring(1);
 }
 
 
-var _guid = guid();
+var _guid = _senso_guid();
 
 window.onload = function pageLoaded() {
   var XHR = new XMLHttpRequest();  
   var TRACKPIX = {
-    appid: "575e40fb48ecb35278f4d34a",
-    api_key: "23d6bb71f4c85597cc2a33b6491f276543db2e7d9b17f3056965dd9ffcb78f00",
+    appid: "57823745b7ea84c24686bf03",
+    api_key: "f99ce062882857f8fd0a7c02097af16ad7897fb338b27de65cd445a80b072038",
     rand_uuid: _guid,
-    url: curr_url
+    url: window.location.href.split('?')[0]
   };
 
   var param = '';
@@ -32,7 +30,7 @@ window.onload = function pageLoaded() {
 
   
   if(XHR) {
-    XHR.open('POST', 'http://localhost:8000/visit', true);
+    XHR.open('POST', 'http://120.24.234.208/visit', true);
 
     XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
@@ -42,6 +40,6 @@ window.onload = function pageLoaded() {
 
 window.onbeforeunload = function doGet(){ 
   var XHR = new XMLHttpRequest();
-  XHR.open('GET', 'http://localhost:8000/leave/' + _guid, true);
+  XHR.open('GET', 'http://120.24.234.208/leave/' + _guid, true);
   XHR.send(null); 
 }; 
